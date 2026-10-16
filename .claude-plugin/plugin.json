@@ -1,0 +1,16 @@
+{
+  "name": "lexponent",
+  "displayName": "Lexponent",
+  "version": "1.0.0",
+  "description": "Answer court-rule questions and build filing checklists for federal and state courts, with every point cited to the rule text.",
+  "author": { "name": "Lexponent", "email": "support@lexponent.ai", "url": "https://www.lexponent.ai" },
+  "homepage": "https://www.lexponent.ai",
+  "repository": "https://github.com/lexponent/skills",
+  "license": "MIT",
+  "keywords": ["legal", "litigation", "court-rules", "local-rules", "statutes", "civil-procedure", "filing-checklist", "citations"],
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://www.lexponent.ai/platforms/claude",
+  "supportUrl": "https://www.lexponent.ai/support",
+  "privacyPolicyUrl": "https://www.lexponent.ai/privacy-policy",
+  "termsOfServiceUrl": "https://www.lexponent.ai/terms-of-service"
+}

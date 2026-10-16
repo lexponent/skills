@@ -1,0 +1,42 @@
+name: Validate plugin
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+
+      - name: Validate Claude manifests
+        run: npx --yes @anthropic-ai/claude-code plugin validate --strict .
+
+      - name: Validate root manifests against Agent Plugins 1.0.0
+        run: |
+          curl -fsSL --retry 3 -o /tmp/plugin.schema.json https://agent-plugins.org/schemas/1.0.0/plugin.schema.json
+          curl -fsSL --retry 3 -o /tmp/mcp.schema.json https://agent-plugins.org/schemas/1.0.0/mcp.schema.json
+          npx --yes ajv-cli@5 validate --spec=draft2020 -s /tmp/plugin.schema.json -d plugin.json
+          npx --yes ajv-cli@5 validate --spec=draft2020 -s /tmp/mcp.schema.json -d mcp.json
+
+      - name: Check names, server key and version match
+        run: |
+          fail=0
+          check() { if [ "$2" != "$3" ]; then echo "Mismatch: $1 is '$2', expected '$3'"; fail=1; fi; }
+          NAME=$(jq -r .name plugin.json)
+          VERSION=$(jq -r .version plugin.json)
+          check ".claude-plugin/plugin.json name" "$(jq -r .name .claude-plugin/plugin.json)" "$NAME"
+          check ".claude-plugin/plugin.json version" "$(jq -r .version .claude-plugin/plugin.json)" "$VERSION"
+          check ".claude-plugin/marketplace.json plugin name" "$(jq -r '.plugins[0].name' .claude-plugin/marketplace.json)" "$NAME"
+          check ".agents/plugins/marketplace.json plugin name" "$(jq -r '.plugins[0].name' .agents/plugins/marketplace.json)" "$NAME"
+          check ".mcp.json server key" "$(jq -r '.mcpServers | keys[0]' .mcp.json)" "$NAME"
+          check "mcp.json server key" "$(jq -r '.mcpServers | keys[0]' mcp.json)" "$NAME"
+          check "mcp.json URL" "$(jq -r '.mcpServers[].url' mcp.json)" "$(jq -r '.mcpServers[].url' .mcp.json)"
+          exit $fail

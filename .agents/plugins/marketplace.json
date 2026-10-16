@@ -1,0 +1,12 @@
+{
+  "name": "lexponent",
+  "interface": { "displayName": "Lexponent" },
+  "plugins": [
+    {
+      "name": "lexponent",
+      "source": { "source": "url", "url": "https://github.com/lexponent/skills.git" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}

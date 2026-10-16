@@ -1,0 +1,12 @@
+{
+  "name": "lexponent",
+  "owner": { "name": "Lexponent", "email": "support@lexponent.ai", "url": "https://www.lexponent.ai" },
+  "description": "Lexponent: court-rule questions and filing checklists, cited to the rule text.",
+  "plugins": [
+    {
+      "name": "lexponent",
+      "source": "./",
+      "description": "Answer court-rule questions and build filing checklists for federal and state courts, with every point cited to the rule text."
+    }
+  ]
+}

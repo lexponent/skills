@@ -1,0 +1,109 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "lexponent",
+  "version": "1.0.0",
+  "description": "Answer court-rule questions and build filing checklists for federal and state courts, with every point cited to the rule text.",
+  "author": { "name": "Lexponent", "email": "support@lexponent.ai", "url": "https://www.lexponent.ai" },
+  "homepage": "https://www.lexponent.ai",
+  "repository": "https://github.com/lexponent/skills",
+  "license": "MIT",
+  "keywords": ["legal", "litigation", "court-rules", "local-rules", "statutes", "civil-procedure", "filing-checklist", "citations"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Lexponent",
+        "shortDescription": "Court rules with citations",
+        "longDescription": "Lexponent gives your assistant the text of the procedural rules that govern litigation: rules of court, local rules, and the statutes they rely on. Ask a procedural question and get an answer grounded in the rule text, with each point linked to the page of the source rule document it came from. Ask for a filing checklist and get the formatting and content requirements for that filing in that court, each one cited, then have the assistant check your draft against it.\n\nWho it's for: attorneys, paralegals, legal secretaries, and filing and docketing staff who need to know what a court's rules require.\n\nCoverage: federal courts and courts in a set of states, including local rules where Lexponent has them. A question about a jurisdiction Lexponent does not cover gets an answer that says so instead of an uncited one.\n\nLimitations: Lexponent retrieves and cites rules and statutes. It does not search case law, file or serve documents, add dates to a calendar, or predict how a court will rule. Rules change, so open the linked source before you file. Lexponent is a research tool, not legal advice. All tools are read-only. A Lexponent account is required.",
+        "developerName": "Lexponent",
+        "category": "Productivity",
+        "capabilities": ["Read"],
+        "websiteURL": "https://www.lexponent.ai",
+        "supportURL": "https://www.lexponent.ai/support",
+        "privacyPolicyURL": "https://www.lexponent.ai/privacy-policy",
+        "termsOfServiceURL": "https://www.lexponent.ai/terms-of-service",
+        "defaultPrompt": [
+          "How do I demand a jury trial in the Northern District of California?",
+          "Give me a filing checklist for a motion to compel further responses in LA Superior Court.",
+          "What is the deadline to file a notice of appeal from a civil judgment in federal court?"
+        ],
+        "brandColor": "#0F766E",
+        "brandColorDark": "#14B8A6",
+        "composerIcon": "./assets/logo.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Answer a federal procedural question from rule text.",
+              "prompt": "How do I demand a jury trial in the Northern District of California?",
+              "tools_triggered": "list_rulesets, list_documents, search_rules, cite",
+              "expected_behavior": "States the written-demand requirement and 14-day deadline from Federal Rule of Civil Procedure 38(b) and the Northern District's Civil Local Rule 3-6. Each rule carries a link produced by cite. No rule is stated without a citation."
+            },
+            {
+              "description": "Retrieve a specific California statute by its identifier.",
+              "prompt": "Show me the text of California Code of Civil Procedure section 1008.",
+              "tools_triggered": "list_rulesets, list_documents, find_rule_by_title, cite",
+              "expected_behavior": "Finds Code of Civil Procedure section 1008 (applications to reconsider) by title, returns its text or an accurate summary of each subdivision, and links the section with cite."
+            },
+            {
+              "description": "Build a filing checklist for a California superior court motion.",
+              "prompt": "Give me a filing checklist for a motion to compel further responses in LA Superior Court.",
+              "tools_triggered": "list_rulesets, list_documents, search_rules, grep_rules, find_rule_by_title, cite",
+              "expected_behavior": "Builds the checklist from the Code of Civil Procedure section for the discovery device at issue (sections 2030.300, 2031.310 or 2033.290, including the 45-day notice deadline and the section 2016.040 meet-and-confer declaration), California Rules of Court rule 3.1345 (separate statement), and the general motion rules. Applies only Los Angeles local rules that govern motions and does not invent a local motion-to-compel rule. Every item is cited."
+            },
+            {
+              "description": "Search local rules for a phrase and handle a phrase that appears only in variant wording.",
+              "prompt": "Which Central District of California local rules mention meet and confer?",
+              "tools_triggered": "list_rulesets, list_documents, grep_rules, cite",
+              "expected_behavior": "Reports that the literal phrase appears only as 'met and conferred' in L.R. 54-2, broadens the search to confer and conference-of-counsel language, and lists L.R. 7-3, 16-2, 26-1, 37-1, 37-2, 54-2 and 79-5, each with a cite link. Does not list rules from other courts."
+            },
+            {
+              "description": "Handle a jurisdiction Lexponent does not cover.",
+              "prompt": "What is the page limit for a motion in Wyoming state district court?",
+              "tools_triggered": "list_rulesets",
+              "expected_behavior": "list_rulesets returns an error naming the covered jurisdictions. The answer says Wyoming is not covered and gives no uncited rule or page limit."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Case-law research is outside Lexponent's corpus of rules and statutes.",
+              "prompt": "Find California cases holding that a non-compete clause is unenforceable.",
+              "expected_behavior": "Does not present Lexponent results as case law and does not invent case citations. Explains that Lexponent covers court rules and statutes, not judicial opinions."
+            },
+            {
+              "description": "Filing and service are actions Lexponent cannot take; all tools are read-only.",
+              "prompt": "File my opposition brief with the court and serve opposing counsel.",
+              "expected_behavior": "Does not claim to file or serve anything. Explains that Lexponent can only look up and cite rules, and may offer a filing checklist instead."
+            },
+            {
+              "description": "Predicting a ruling is outside the rules corpus.",
+              "prompt": "Will Judge Smith grant my motion for summary judgment?",
+              "expected_behavior": "Does not call Lexponent tools to predict an outcome or profile a judge. Explains that Lexponent answers what the rules require, not how a court will rule."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "Lexponent does not sell products or process payments in ChatGPT."
+      },
+      "publication": {
+        "release_notes": "Initial release: rule questions and filing checklists, with every rule cited to its source document."
+      }
+    },
+    "com.microsoft.agents-toolkit": {
+      "id": "b6a8f688-1391-5244-89d8-cf894b08d1a0",
+      "name": { "short": "Lexponent", "full": "Lexponent: Court Rules and Statutes" },
+      "description": {
+        "short": "Cited answers and filing checklists from court rules and statutes",
+        "full": "Lexponent gives your assistant the text of the procedural rules that govern litigation: rules of court, local rules, and the statutes they rely on. Ask a procedural question and get an answer grounded in the rule text, with each point linked to the page of the source rule document it came from. Ask for a filing checklist and get the formatting and content requirements for that filing in that court, each one cited, then have the assistant check your draft against it.\n\nWho it's for: attorneys, paralegals, legal secretaries, and filing and docketing staff who need to know what a court's rules require.\n\nCoverage: federal courts and courts in a set of states, including local rules where Lexponent has them. A question about a jurisdiction Lexponent does not cover gets an answer that says so instead of an uncited one.\n\nLimitations: Lexponent retrieves and cites rules and statutes. It does not search case law, file or serve documents, add dates to a calendar, or predict how a court will rule. Rules change, so open the linked source before you file. Lexponent is a research tool, not legal advice. All tools are read-only. A Lexponent account is required."
+      },
+      "developer": {
+        "name": "Lexponent",
+        "websiteUrl": "https://www.lexponent.ai",
+        "privacyUrl": "https://www.lexponent.ai/privacy-policy",
+        "termsOfUseUrl": "https://www.lexponent.ai/terms-of-service"
+      },
+      "accentColor": "#0F766E"
+    }
+  }
+}
