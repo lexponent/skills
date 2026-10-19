@@ -35,51 +35,51 @@
         "test_cases": {
           "positive": [
             {
-              "description": "Answer a federal procedural question from rule text.",
-              "prompt": "How do I demand a jury trial in the Northern District of California?",
-              "tools_triggered": "list_rulesets, list_documents, search_rules, cite",
-              "expected_behavior": "States the written-demand requirement and 14-day deadline from Federal Rule of Civil Procedure 38(b) and the Northern District's Civil Local Rule 3-6. Each rule carries a link produced by cite. No rule is stated without a citation."
+              "description": "Build a filing checklist for a federal appellate amicus brief.",
+              "prompt": "What are the consent, timing, and length rules for an amicus brief on the merits in the Ninth Circuit? Please use Lexponent to make a checklist",
+              "tools_triggered": "list_rulesets, list_documents, search_rules, grep_rules, cite",
+              "expected_behavior": "Returns a checklist covering consent, timing, and length, with each item linked by cite. Consent: the brief states that all parties consented, or the amicus obtains leave; the United States, its officers or agencies, and states need neither (Fed. R. App. P. 29(a)(2)). Timing: no later than 7 days after the supported party's principal brief is filed, or after the appellant's if supporting neither party (Fed. R. App. P. 29(a)(6)). Length: 7,000 words, half the Ninth Circuit's 14,000-word principal-brief limit (Fed. R. App. P. 29(a)(5); 9th Cir. R. 32-1), with a Form 8 certificate of compliance. Other formatting and content items from these rules may also appear."
             },
             {
-              "description": "Retrieve a specific California statute by its identifier.",
-              "prompt": "Show me the text of California Code of Civil Procedure section 1008.",
-              "tools_triggered": "list_rulesets, list_documents, find_rule_by_title, cite",
-              "expected_behavior": "Finds Code of Civil Procedure section 1008 (applications to reconsider) by title, returns its text or an accurate summary of each subdivision, and links the section with cite."
+              "description": "Answer a federal district court page-limit question from the local rules.",
+              "prompt": "How many pages do I get for my opposition to a motion to dismiss in the Northern District of California?",
+              "tools_triggered": "list_rulesets, list_documents, search_rules, grep_rules, cite",
+              "expected_behavior": "States that an opposition is limited to 25 pages of text, citing N.D. Cal. Civ. L.R. 7-3(a) or 7-4(b) with a cite link. May note related requirements from the same rules, such as the filing deadline or tables of contents and authorities."
             },
             {
-              "description": "Build a filing checklist for a California superior court motion.",
-              "prompt": "Give me a filing checklist for a motion to compel further responses in LA Superior Court.",
-              "tools_triggered": "list_rulesets, list_documents, search_rules, grep_rules, find_rule_by_title, cite",
-              "expected_behavior": "Builds the checklist from the Code of Civil Procedure section for the discovery device at issue (sections 2030.300, 2031.310 or 2033.290, including the 45-day notice deadline and the section 2016.040 meet-and-confer declaration), California Rules of Court rule 3.1345 (separate statement), and the general motion rules. Applies only Los Angeles local rules that govern motions and does not invent a local motion-to-compel rule. Every item is cited."
+              "description": "Answer a statewide California rule question.",
+              "prompt": "What's the page limit for a reply brief on a motion under the California Rules of Court?",
+              "tools_triggered": "list_rulesets, list_documents, search_rules, grep_rules, cite",
+              "expected_behavior": "States the 10-page limit for a reply memorandum under California Rules of Court, rule 3.1113(d), with a cite link. May note the items excluded from the count or how to request more pages under rule 3.1113(e)."
             },
             {
-              "description": "Search local rules for a phrase and handle a phrase that appears only in variant wording.",
-              "prompt": "Which Central District of California local rules mention meet and confer?",
-              "tools_triggered": "list_rulesets, list_documents, grep_rules, cite",
-              "expected_behavior": "Reports that the literal phrase appears only as 'met and conferred' in L.R. 54-2, broadens the search to confer and conference-of-counsel language, and lists L.R. 7-3, 16-2, 26-1, 37-1, 37-2, 54-2 and 79-5, each with a cite link. Does not list rules from other courts."
+              "description": "Combine statewide rules and a county superior court's local rules.",
+              "prompt": "What are the notice requirements for an ex parte application in a civil case in San Francisco Superior Court?",
+              "tools_triggered": "list_rulesets, list_documents, search_rules, grep_rules, cite",
+              "expected_behavior": "States that notice must be given to the other parties by 10:00 a.m. the court day before the hearing (California Rules of Court, rule 3.1203(a)), with a cite link. May add the notice-content and declaration requirements of rules 3.1204 and 3.1206 and San Francisco Local Rule 9.0's clerk-scheduling and hearing-time requirements. Does not apply family-law or juvenile ex parte rules."
             },
             {
-              "description": "Handle a jurisdiction Lexponent does not cover.",
-              "prompt": "What is the page limit for a motion in Wyoming state district court?",
-              "tools_triggered": "list_rulesets",
-              "expected_behavior": "list_rulesets returns an error naming the covered jurisdictions. The answer says Wyoming is not covered and gives no uncited rule or page limit."
+              "description": "Answer a California statutory deadline that cross-references another section.",
+              "prompt": "What is the deadline to file a JNOV motion in California?",
+              "tools_triggered": "list_rulesets, list_documents, search_rules, find_rule_by_title, cite",
+              "expected_behavior": "States that a JNOV motion must be filed and served within the new-trial period: 15 days after service of notice of entry of judgment, or 180 days after entry of judgment, whichever is earliest. Cites both Code of Civil Procedure section 629(b) and section 659(a), each with a cite link."
             }
           ],
           "negative": [
             {
-              "description": "Case-law research is outside Lexponent's corpus of rules and statutes.",
-              "prompt": "Find California cases holding that a non-compete clause is unenforceable.",
-              "expected_behavior": "Does not present Lexponent results as case law and does not invent case citations. Explains that Lexponent covers court rules and statutes, not judicial opinions."
+              "description": "Foreign law: Lexponent covers U.S. federal and state courts only.",
+              "prompt": "What is the deadline to file a defence to a claim in the High Court of England and Wales?",
+              "expected_behavior": "Lexponent should not supply the answer, because its corpus covers U.S. courts only. If Lexponent is called, list_rulesets reports that the jurisdiction is not covered, and no Lexponent rule is presented as English law. ChatGPT may answer from other sources."
             },
             {
-              "description": "Filing and service are actions Lexponent cannot take; all tools are read-only.",
-              "prompt": "File my opposition brief with the court and serve opposing counsel.",
-              "expected_behavior": "Does not claim to file or serve anything. Explains that Lexponent can only look up and cite rules, and may offer a filing checklist instead."
+              "description": "Case law: Lexponent contains court rules and statutes, not judicial decisions.",
+              "prompt": "Find Ninth Circuit decisions from the last five years affirming Rule 11 sanctions for a frivolous complaint.",
+              "expected_behavior": "Lexponent should not supply the decisions, because it has no case law. If Lexponent is called, it may return the text of Federal Rule of Civil Procedure 11 presented as the rule, and no rule text is presented as a court decision. ChatGPT may find decisions with other tools."
             },
             {
-              "description": "Predicting a ruling is outside the rules corpus.",
-              "prompt": "Will Judge Smith grant my motion for summary judgment?",
-              "expected_behavior": "Does not call Lexponent tools to predict an outcome or profile a judge. Explains that Lexponent answers what the rules require, not how a court will rule."
+              "description": "Judge statistics: Lexponent contains rules, not judges' ruling histories.",
+              "prompt": "What percentage of summary judgment motions does Judge William Alsup grant?",
+              "expected_behavior": "Lexponent should not supply a grant rate, because it has no data on how judges rule. If Lexponent is called, no percentage or ruling history is attributed to Lexponent's results. ChatGPT may answer from other sources."
             }
           ]
         },
