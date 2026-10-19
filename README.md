@@ -1,6 +1,12 @@
 # Lexponent
 
-Lexponent answers questions about court rules and builds filing checklists, with every point cited to the rule text. It covers federal courts and state courts in a set of states, including local rules where Lexponent has them; see [lexponent.ai/coverage](https://www.lexponent.ai/coverage) for the current list. It is for attorneys, paralegals, legal secretaries, and filing and docketing staff.
+Lexponent connects your AI assistant to federal and state court rules, statutes, and more. Build filing checklists, review a draft filing against the rules, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get cited answers to procedural questions. Every statement links to the rule it rests on, so you can verify in one click.
+
+## Who it's for and what it covers
+
+Lexponent is built for attorneys, paralegals, legal secretaries, and the filing and docketing staff who need to know exactly what specific courts require. It covers all federal courts and a growing list of states' court rules and statutes. See [lexponent.ai/coverage](https://www.lexponent.ai/coverage) for the current list.
+
+## Skills
 
 The plugin bundles two skills and the Lexponent connector:
 
@@ -71,11 +77,9 @@ Lexponent looks up and cites court rules and statutes. It does not search case l
 
 Email [support@lexponent.ai](mailto:support@lexponent.ai) or visit [lexponent.ai/support](https://www.lexponent.ai/support).
 
-## Maintainers
+## Contributing
 
-- **Manifests.** Claude reads `.claude-plugin/` and `.mcp.json`. ChatGPT, Codex, Microsoft's Agents Toolkit, Perplexity and Mistral read the root `plugin.json` and `mcp.json`. Codex and the ChatGPT desktop app read `.agents/plugins/marketplace.json`. Keep the plugin name, server key and version the same in all of them; CI checks this.
-- **Releases.** Raise `version` in both `plugin.json` files for every release, or installed copies won't update.
-- **OpenAI upload.** Build the ZIP from an allowlist: `zip -r lexponent-openai.zip plugin.json mcp.json skills assets LICENSE`. Don't commit it.
+See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## License
 
