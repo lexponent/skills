@@ -83,6 +83,7 @@
             }
           ]
         },
+        "demo_recording_url": "https://e8owxqqw5ts61o1z.public.blob.vercel-storage.com/chatgpt-filing-checklist.mp4",
         "commerce": false,
         "commerce_description": "Lexponent does not sell products or process payments in ChatGPT."
       },
