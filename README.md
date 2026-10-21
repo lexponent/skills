@@ -57,7 +57,6 @@ Connect `https://mcp.lexponent.ai/mcp` as a remote MCP server (Streamable HTTP, 
 
 - **What the plugin runs.** The plugin is Markdown instructions and a connection setting. It runs no code on your computer and stores no credentials.
 - **What it sends.** When your assistant calls a Lexponent tool, it sends the tool's arguments over HTTPS to `https://mcp.lexponent.ai/mcp`: the jurisdiction, the rule documents to search, and the search phrase, rule number, or text pattern the assistant composed. Your documents and conversation are not sent; when you ask for a draft review, the comparison happens in your assistant.
-- **What Lexponent does with it.** For each request, Lexponent logs your account and organization identifiers, which assistant sent it, which tool it used, the text it searched for or looked up, when it was made, how long it took, and whether it succeeded. The search text is written by your assistant and may include your question as you asked it. Lexponent does not log the rules it returns. It uses these records to run and improve Lexponent and to measure how much each account uses it, including to apply usage limits. To answer a search, Lexponent sends its text to an AI model provider. Server logs are kept up to 30 days.
 - **Links.** Citation links open rule PDFs hosted by Lexponent at `lexponent-rule-documents.s3.us-east-1.amazonaws.com`.
 - **Your assistant.** Rule text that Lexponent returns, and anything you type, is processed by the assistant you use under that provider's terms.
 
