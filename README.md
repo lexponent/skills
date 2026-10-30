@@ -1,10 +1,10 @@
 # Lexponent
 
-Lexponent connects your AI assistant to federal and state court rules, statutes, and more. Build filing checklists, review a draft filing against the rules, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get cited answers to procedural questions. Every statement links to the rule it rests on, so you can verify in one click.
+Lexponent connects your AI assistant to federal and state court rules, including local rules and orders, as well as procedural statutes. Build filing checklists, review a draft against the court's rules before it's filed, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get answers to procedural questions. Every statement links to the rule it rests on, so you can verify it in one click.
 
 ## Who it's for and what it covers
 
-Lexponent is built for attorneys, paralegals, legal secretaries, and the filing and docketing staff who need to know exactly what specific courts require. It covers all federal courts and a growing list of states' court rules and statutes. See [lexponent.ai/coverage](https://www.lexponent.ai/coverage) for the current list.
+Lexponent is built for litigators, paralegals, legal assistants, and docketing staff. It covers every federal court and a growing list of states. See [lexponent.ai/coverage](https://www.lexponent.ai/coverage) for the current list.
 
 ## Skills
 

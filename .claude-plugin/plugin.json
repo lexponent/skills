@@ -1,8 +1,8 @@
 {
   "name": "lexponent",
-  "displayName": "Lexponent",
+  "displayName": "Lexponent Legal Procedure",
   "version": "1.0.0",
-  "description": "Lexponent connects Claude to federal and state court rules, statutes, and more. Build filing checklists, review a draft filing against the rules, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get cited answers to procedural questions. Every statement links to the rule it rests on, so you can verify in one click. Requires a Lexponent account.",
+  "description": "Lexponent connects Claude to federal and state court rules, including local rules and orders, as well as procedural statutes. Build filing checklists, review a draft against the court's rules before it's filed, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get answers to procedural questions. Every statement links to the rule it rests on, so you can verify it in one click.\n\nBuilt for litigators, paralegals, legal assistants, and docketing staff. Covers every federal court and a growing list of states. Requires a Lexponent account.",
   "author": { "name": "Lexponent", "email": "support@lexponent.ai", "url": "https://www.lexponent.ai" },
   "homepage": "https://www.lexponent.ai",
   "repository": "https://github.com/lexponent/skills",

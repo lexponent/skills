@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "lexponent",
   "version": "1.0.0",
-  "description": "Lexponent connects your AI assistant to federal and state court rules, statutes, and more. Build filing checklists, review a draft filing against the rules, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get cited answers to procedural questions. Every statement links to the rule it rests on, so you can verify in one click. Requires a Lexponent account.",
+  "description": "Lexponent connects your AI assistant to federal and state court rules, including local rules and orders, as well as procedural statutes. Build filing checklists, review a draft against the court's rules before it's filed, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get answers to procedural questions. Every statement links to the rule it rests on, so you can verify it in one click.\n\nBuilt for litigators, paralegals, legal assistants, and docketing staff. Covers every federal court and a growing list of states. Requires a Lexponent account.",
   "author": { "name": "Lexponent", "email": "support@lexponent.ai", "url": "https://www.lexponent.ai" },
   "homepage": "https://www.lexponent.ai",
   "repository": "https://github.com/lexponent/skills",
@@ -11,9 +11,9 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Lexponent",
-        "shortDescription": "Court rule compliance",
-        "longDescription": "Lexponent connects ChatGPT to federal and state court rules, statutes, and more. Build filing checklists, review a draft filing against the rules, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get cited answers to procedural questions. Every statement links to the rule it rests on, so you can verify in one click. Requires a Lexponent account.\n\nLexponent is built for attorneys, paralegals, legal secretaries, and the filing and docketing staff who need to know exactly what specific courts require. It covers all federal courts and a growing list of states' court rules and statutes.",
+        "displayName": "Lexponent Legal Procedure",
+        "shortDescription": "Federal and state court rules",
+        "longDescription": "Lexponent connects ChatGPT to federal and state court rules, including local rules and orders, as well as procedural statutes. Build filing checklists, review a draft against the court's rules before it's filed, map the procedural timeline that follows a trigger event, generate court-specific practice guides, and get answers to procedural questions. Every statement links to the rule it rests on, so you can verify it in one click.\n\nBuilt for litigators, paralegals, legal assistants, and docketing staff. Covers every federal court and a growing list of states. Requires a Lexponent account.",
         "developerName": "Lexponent",
         "category": "Productivity",
         "capabilities": ["Read"],
@@ -96,7 +96,7 @@
       "name": { "short": "Lexponent", "full": "Lexponent: Court Rules and Statutes" },
       "description": {
         "short": "Cited answers and filing checklists from court rules and statutes",
-        "full": "Lexponent gives your assistant the text of the procedural rules that govern litigation: rules of court, local rules, and the statutes they rely on. Ask a procedural question and get an answer grounded in the rule text, with each point linked to the page of the source rule document it came from. Ask for a filing checklist and get the formatting and content requirements for that filing in that court, each one cited, then have the assistant check your draft against it.\n\nWho it's for: attorneys, paralegals, legal secretaries, and filing and docketing staff who need to know what a court's rules require.\n\nCoverage: all federal courts and a growing list of states' court rules and statutes, including local rules where Lexponent has them. A question about a jurisdiction Lexponent does not cover gets an answer that says so instead of an uncited one.\n\nLimitations: Lexponent retrieves and cites rules and statutes. It does not search case law, file or serve documents, add dates to a calendar, or predict how a court will rule. Rules change, so open the linked source before you file. Lexponent is a research tool, not legal advice. All tools are read-only. A Lexponent account is required."
+        "full": "Lexponent gives your assistant the text of the procedural rules that govern litigation: rules of court, local rules, and the statutes they rely on. Ask a procedural question and get an answer grounded in the rule text, with each point linked to the page of the source rule document it came from. Ask for a filing checklist and get the formatting and content requirements for that filing in that court, each one cited, then have the assistant check your draft against it.\n\nWho it's for: attorneys, paralegals, legal assistants, and filing and docketing staff who need to know what a court's rules require.\n\nCoverage: all federal courts and a growing list of states' court rules and statutes, including local rules where Lexponent has them. A question about a jurisdiction Lexponent does not cover gets an answer that says so instead of an uncited one.\n\nLimitations: Lexponent retrieves and cites rules and statutes. It does not search case law, file or serve documents, add dates to a calendar, or predict how a court will rule. Rules change, so open the linked source before you file. Lexponent is a research tool, not legal advice. All tools are read-only. A Lexponent account is required."
       },
       "developer": {
         "name": "Lexponent",
